@@ -1,6 +1,0 @@
-.gitinore
-!*.c
-!*.h
-!Makefile
-main.c
-.DS_Store
