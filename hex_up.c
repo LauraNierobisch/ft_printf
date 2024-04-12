@@ -6,13 +6,13 @@
 /*   By: lnierobi <lnierobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:04:33 by lnierobi          #+#    #+#             */
-/*   Updated: 2024/04/11 16:37:53 by lnierobi         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:35:34 by lnierobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	extra_wurst(unsigned long n, int base, int *count)
+static int	extra_temp(unsigned long n, int base, int *count)
 {
 	int	temp;
 
@@ -44,7 +44,7 @@ int	hex_up(long long n, int base)
 	n = n / base;
 	if (n > 0)
 	{
-		if (extra_wurst(n, base, &count) == -1)
+		if (extra_temp(n, base, &count) == -1)
 			return (-1);
 	}
 	if (write(1, &print, 1) == -1)

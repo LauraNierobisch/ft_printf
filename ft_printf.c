@@ -6,13 +6,13 @@
 /*   By: lnierobi <lnierobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:43:22 by lnierobi          #+#    #+#             */
-/*   Updated: 2024/04/11 16:50:06 by lnierobi         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:34:25 by lnierobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_format(char specifier, va_list ap)
+static int	print_format(char specifier, va_list ap)
 {
 	int	count;
 
@@ -38,52 +38,43 @@ int	print_format(char specifier, va_list ap)
 	return (count);
 }
 
+static int	extra_temp(const char **format, va_list ap, int *count)
+{
+	int	temp;
+
+	if (**format == '%')
+	{
+		temp = print_format(*(++(*format)), ap);
+		if (temp == -1)
+			return (-1);
+		*count += temp;
+	}
+	else
+	{
+		temp = write(1, *format, 1);
+		if (temp == -1)
+			return (-1);
+		*count += temp;
+	}
+	return (0);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		count;
-	int		temp;
 
 	va_start(ap, format);
 	count = 0;
 	while (*format != '\0')
 	{
-		if (*format == '%')
+		if (extra_temp(&format, ap, &count) == -1)
 		{
-			temp = print_format(*(++format), ap);
-			if (temp == -1)
-				return (-1);
-			count += temp;
-		}
-		else
-		{
-			temp = write(1, format, 1);
-			if (temp == -1)
-				return (-1);
-			count += temp;
+			va_end(ap);
+			return (-1);
 		}
 		++format;
-		if (count == -1)
-			return (-1);
 	}
 	va_end(ap);
 	return (count);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	unsigned long	ui;
-
-// 	int a, b;
-// 	ui = 18446744073709551615;
-// 	a = printf("real: %p\n", (void *)ui);
-// 	b = ft_printf("copy: %p\n", (void *)ui);
-// 	printf("\n\nStandard: %i :: Mine: %i\n\n", a, b);
-// 	return (0);
-// }
-
-// 0123456789
-// 0123456789abcdef =Hexadecimal lowercase
-// 0123456789ABCDEF =Hexadecimal uppercase

@@ -6,7 +6,7 @@
 /*   By: lnierobi <lnierobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:48:47 by lnierobi          #+#    #+#             */
-/*   Updated: 2024/04/11 13:41:35 by lnierobi         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:25:32 by lnierobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <limits.h>
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -28,5 +27,4 @@ int		print_digit(int n, int base);
 int		print_int(long long n);
 int		print_pointer(void *ptr);
 int		print_str(char *s);
-void	ft_putchar_fd(char c);
 #endif
