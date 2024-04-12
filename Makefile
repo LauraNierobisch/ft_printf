@@ -6,12 +6,12 @@
 #    By: lnierobi <lnierobi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 11:54:03 by lnierobi          #+#    #+#              #
-#    Updated: 2024/04/12 12:17:21 by lnierobi         ###   ########.fr        #
+#    Updated: 2024/04/12 12:52:23 by lnierobi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	ft_printf.c unsigned_decimal.c ft_printf.c hex_low.c hex_up.c \
-			print_char.c print_digit.c print_int.c print_pointer.c print_str.c 
+SRCS	=	unsigned_decimal.c ft_printf.c hex_low.c hex_up.c \
+			print_char.c print_digit.c print_int.c print_pointer.c print_str.c
 OBJS	= $(SRCS:.c=.o)
 CC		= cc
 RM		=rm -f
@@ -27,7 +27,7 @@ $(NAME): $(OBJS)
 clean:
 		$(RM) $(OBJS)
 fclean: clean
-		$(RM) $(Names)
+		$(RM) $(NAME)
 
 re:	fclean all
 
